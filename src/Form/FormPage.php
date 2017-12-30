@@ -101,7 +101,7 @@ class FormPage extends FormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     // Capitalise the first letter of the name.
     $form_state->setValue('name', ucfirst($form_state->getValue('name')));
-    
+
     // Output all the values entered by user.
     drupal_set_message($this->t('Your name is "@name", you were born on @birth_date as @gender. You are now @age years old.', [
       '@name' => $form_state->getValue('name'),

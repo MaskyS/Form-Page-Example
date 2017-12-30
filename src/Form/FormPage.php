@@ -8,7 +8,7 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * {@inheritdoc}
  */
-class SimpleForm extends FormBase {
+class FormPage extends FormBase {
 
   /**
    * @return string
@@ -50,13 +50,13 @@ class SimpleForm extends FormBase {
     ];
 
     $form['gender'] = [
-      '#type' => 'radio',
+      '#type' => 'select',
       '#title' => $this->t('Gender'),
-      '#description' => $this->t('Choose you gender.'),
+      '#description' => $this->t('Choose your gender.'),
       '#options' => [
-        0 => $this->t('Male'),
-        1 => $this->t('Female'),
-        2 => $this->t('Other'),
+        'male' => $this->t('Male'),
+        'female' => $this->t('Female'),
+        'other' => $this->t('Other'),
       ],
       '#required' => TRUE,
     ];
@@ -88,10 +88,10 @@ class SimpleForm extends FormBase {
     }
 
     // Check if age and birth date correspond.
-    $birth_year = ($int) (substr(($form_state->getValue('birth_date')), 0, 3));
+    $birth_year = substr(($form_state->getValue('birth_date')), 0, 4);
     $current_year = date("Y");
     if (($current_year - $birth_year) != $age) {
-      $form_state->setErrorByName('birth_date', $this->t('Your birth date and age do not correspond.'));
+	    $form_state->setErrorByName('birth_date', $this->t('Your birth date and age do not correspond.'));
     }
   }
 
@@ -99,12 +99,15 @@ class SimpleForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-
+    // Capitalise the first letter of the name.
+    $form_state->setValue('name', ucfirst($form_state->getValue('name')));
+    
+    // Output all the values entered by user.
     drupal_set_message($this->t('Your name is "@name", you were born on @birth_date as @gender. You are now @age years old.', [
       '@name' => $form_state->getValue('name'),
       '@birth_date' => $form_state->getValue('birth_date'),
       '@gender' => $form_state->getValue('gender'),
-      'age' => $form_state->getValue('age'),
+      '@age' => $form_state->getValue('age'),
     ]));
   }
 

@@ -1,7 +1,7 @@
-form_page_example.form_page:
-  path: '/form'
-    defaults:
-      _form:  '\Drupal\form_page_example\Form\FormPage'
-      _title: 'Form Page'
-    requirements:
-      _permission: 'access content'
+form_page_example:
+  path: '/form-page-example'
+  defaults:
+    _title: 'Form Page'
+    _form:  '\Drupal\form_page_example\Form\FormPage'
+  requirements:
+    _permission: 'access content'

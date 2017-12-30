@@ -91,7 +91,7 @@ class FormPage extends FormBase {
     $birth_year = substr(($form_state->getValue('birth_date')), 0, 4);
     $current_year = date("Y");
     if (($current_year - $birth_year) != $age) {
-	    $form_state->setErrorByName('birth_date', $this->t('Your birth date and age do not correspond.'));
+      $form_state->setErrorByName('birth_date', $this->t('Your birth date and age do not correspond.'));
     }
   }
 

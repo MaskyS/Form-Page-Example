@@ -1,0 +1,5 @@
+name: Form Page Example
+type: module
+description: 'Displays a simple form page at /form'
+package: Custom
+core: 8.x

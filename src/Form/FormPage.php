@@ -71,7 +71,7 @@ class FormPage extends FormBase {
   }
 
   /**
-   * This function will validate the form input.
+   * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
 
